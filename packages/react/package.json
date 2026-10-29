@@ -15,5 +15,8 @@
   },
   "peerDependencies": {
     "react": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs"
   }
 }

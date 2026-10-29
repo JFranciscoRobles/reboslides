@@ -28,7 +28,9 @@
     "viewer": "npm run dev -w @reboslides/viewer-demo",
     "storage": "npm run dev -w @reboslides/storage",
     "desktop": "npm run dev -w @reboslides/desktop",
-    "build:desktop": "npm run build -w @reboslides/desktop"
+    "build:desktop": "npm run build -w @reboslides/desktop",
+    "build:packages": "npm run build -w @reboslides/core -w @reboslides/editor -w @reboslides/viewer -w @reboslides/collab -w @reboslides/react -w @reboslides/mcp",
+    "release": "npm run build:packages && node tools/release.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",

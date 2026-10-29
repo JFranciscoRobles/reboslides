@@ -16,5 +16,8 @@
   },
   "dependencies": {
     "@reboslides/core": "*"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs"
   }
 }
