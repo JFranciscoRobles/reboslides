@@ -1,0 +1,16 @@
+{
+  "name": "@reboslides/playground",
+  "version": "0.1.0",
+  "description": "The test application every package is tried in.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@reboslides/core": "^0.1.0",
+    "@reboslides/editor": "^0.1.0"
+  }
+}

@@ -1,0 +1,111 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  flex: none;
+  background: #fbfaf8;
+  border-left: 1px solid #e6e3dc;
+}
+.chat h2 {
+  margin: 0;
+  padding: 14px;
+  font-size: 15px;
+  border-bottom: 1px solid #e6e3dc;
+}
+.lines {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ideas p {
+  margin: 0 0 8px;
+  color: #6b6964;
+  font-size: 13px;
+}
+.ideas button {
+  display: block;
+  width: 100%;
+  margin-bottom: 6px;
+  padding: 8px 10px;
+  border: 1px solid #e6e3dc;
+  border-radius: 10px;
+  background: #fff;
+  text-align: left;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.ideas button:hover {
+  border-color: #6741d9;
+}
+.line {
+  padding: 8px 11px;
+  border-radius: 12px;
+  white-space: pre-wrap;
+  font-size: 13.5px;
+}
+.line.user {
+  align-self: flex-end;
+  max-width: 85%;
+  background: #6741d9;
+  color: #fff;
+}
+.line.assistant {
+  align-self: flex-start;
+  max-width: 92%;
+  background: #fff;
+  border: 1px solid #e6e3dc;
+}
+.line small {
+  display: block;
+  margin-top: 6px;
+  color: #9b9890;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 11px;
+}
+.line.busy {
+  color: #6b6964;
+  font-style: italic;
+}
+.chat form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  border-top: 1px solid #e6e3dc;
+}
+.chat textarea {
+  resize: none;
+  padding: 8px 10px;
+  border: 1px solid #e6e3dc;
+  border-radius: 10px;
+  font: inherit;
+}
+.chat form button {
+  align-self: flex-end;
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 9px;
+  background: #6741d9;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.chat form button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+/* Three columns: the list and the chat give the studio the room they can. */
+.side {
+  width: 210px;
+}
+.side .hint {
+  display: none;
+}
+.chat {
+  width: 290px;
+}

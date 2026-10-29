@@ -1,0 +1,25 @@
+{
+  "name": "@reboslides/storage",
+  "version": "0.1.0",
+  "description": "Decks kept in an S3 bucket (Cloudflare R2, AWS S3, MinIO), or a folder without one: list them with thumbnails, open, save, and keep and restore versions.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "cors": "vite-node scripts/cors.ts",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1156.0",
+    "@aws-sdk/s3-request-presigner": "^3.1156.0",
+    "@reboslides/core": "^0.1.0",
+    "@reboslides/react": "^0.1.0",
+    "@reboslides/viewer": "^0.1.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.1"
+  }
+}

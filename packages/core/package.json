@@ -1,0 +1,15 @@
+{
+  "name": "@reboslides/core",
+  "version": "0.1.0",
+  "description": "The engine: the deck and its slides, the elements placed on them and the changes made to them, templates, PDF and PPTX, and the text of each box set by @rebodocs/core. No DOM.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@rebodocs/core": "file:../../../docs/packages/core",
+    "fflate": "^0.8.2"
+  }
+}

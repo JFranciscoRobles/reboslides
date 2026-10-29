@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+body {
+  font:
+    14px / 1.4 system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  color: #2f2e2b;
+  background: #efede8;
+}
+.app {
+  display: flex;
+  height: 100%;
+}
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 260px;
+  flex: none;
+  padding: 14px;
+  background: #fbfaf8;
+  border-right: 1px solid #e6e3dc;
+  overflow-y: auto;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+.badge {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: #f0ebf8;
+  color: #6741d9;
+  font-size: 12px;
+  font-weight: 600;
+}
+.me {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: #6b6964;
+}
+.me input {
+  padding: 7px 10px;
+  border: 1px solid #e6e3dc;
+  border-radius: 9px;
+  font: inherit;
+  color: #2f2e2b;
+}
+.decks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.decks button {
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 9px;
+  background: none;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.decks button:hover {
+  background: #f3f1ec;
+}
+.decks button[aria-current="true"] {
+  background: #f0ebf8;
+  color: #6741d9;
+  font-weight: 600;
+}
+.decks small {
+  display: block;
+  color: #0e7c52;
+  font-weight: 500;
+}
+.new {
+  padding: 9px;
+  border: 1px dashed #ccc8bf;
+  border-radius: 9px;
+  background: none;
+  font: inherit;
+  color: #5f5d58;
+  cursor: pointer;
+}
+.new:hover {
+  border-color: #6741d9;
+  color: #6741d9;
+}
+.status {
+  margin: 0;
+  font-size: 12px;
+  color: #5f5d58;
+}
+.hint {
+  margin: auto 0 0;
+  font-size: 12px;
+  color: #9b9890;
+}
+.main {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+.empty {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  margin: 0;
+  color: #6b6964;
+}

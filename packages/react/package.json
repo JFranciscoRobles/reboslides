@@ -1,0 +1,19 @@
+{
+  "name": "@reboslides/react",
+  "version": "0.1.0",
+  "description": "The slide studio as a React component, or as headless hooks for an interface of one's own, with collaboration in both.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@reboslides/collab": "*",
+    "@reboslides/core": "*",
+    "@reboslides/editor": "*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  }
+}

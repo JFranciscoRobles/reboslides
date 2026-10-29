@@ -1,0 +1,44 @@
+{
+  "name": "reboslides",
+  "version": "0.1.0",
+  "description": "A design studio for presentations in the browser, in the look of the Rebo suite: slides of text, shapes and pictures placed freely, templates, presenting, and export to vector PDF. Its text is set by the rebodocs engine. React component and headless hooks, real-time collaboration, and an MCP server for AI assistants.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @reboslides/playground",
+    "build": "npm run build -w @reboslides/playground",
+    "site": "npm run dev -w @reboslides/site",
+    "build:site": "npm run build -w @reboslides/site",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check packages apps",
+    "format": "biome check --write packages apps",
+    "demo": "npm run dev -w @reboslides/demo",
+    "realtime": "npm run dev -w @reboslides/realtime",
+    "assistant": "npm run dev -w @reboslides/assistant",
+    "collab": "node packages/collab/bin/reboslides-collab.mjs",
+    "viewer": "npm run dev -w @reboslides/viewer-demo",
+    "storage": "npm run dev -w @reboslides/storage",
+    "desktop": "npm run dev -w @reboslides/desktop",
+    "build:desktop": "npm run build -w @reboslides/desktop"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "happy-dom": "^21.0.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vite-node": "^6.0.0",
+    "vitest": "^5.0.5"
+  }
+}

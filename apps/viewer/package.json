@@ -1,0 +1,21 @@
+{
+  "name": "@reboslides/viewer-demo",
+  "version": "0.1.0",
+  "description": "Decks only to look at: a shelf of them with the first slide of each as a thumbnail, and each one opened in the viewer, presented or printed.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@reboslides/core": "^0.1.0",
+    "@reboslides/viewer": "^0.1.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.1"
+  }
+}

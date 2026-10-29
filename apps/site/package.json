@@ -1,0 +1,32 @@
+{
+  "name": "@reboslides/site",
+  "version": "0.1.0",
+  "description": "reboslides.com: the landing page, the studio to try, and the developer documentation.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 5198",
+    "build": "next build",
+    "start": "npx serve out -l 5198"
+  },
+  "dependencies": {
+    "@reboslides/collab": "^0.1.0",
+    "@reboslides/core": "^0.1.0",
+    "@reboslides/editor": "^0.1.0",
+    "@reboslides/react": "^0.1.0",
+    "markdown-it": "^15.0.2",
+    "markdown-it-anchor": "^10.0.0",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "shiki": "^4.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/markdown-it": "^14.2.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.3"
+  }
+}
