@@ -1,55 +1,60 @@
 # ReboSlides
 
-Un estudio de diseño de presentaciones en el navegador, con la interfaz de
-la suite Rebo (claro y oscuro): diapositivas con texto, formas e imágenes
-colocadas libremente, temas y plantillas, presentación a pantalla completa y
-exportación a PDF vectorial y PNG.
+A presentation design studio for the browser, with the look of the Rebo
+suite (light and dark): slides with freely placed text, shapes and images,
+themes and templates, full-screen presenting, and export to vector PDF and
+PNG. The interface is in English and Spanish.
 
-El texto de cada caja lo maqueta **el motor de [rebodocs](../docs)**: los
-mismos párrafos, listas, fuentes y medidas que un DOCX, puestos al ancho de la
-caja con `layoutContinuous`. El cursor, la selección y el punto bajo el puntero
-salen de ese mismo maquetado (`caretRect`, `selectionRects`, `hitTest`), y la
-edición usa sus operaciones (`insertText`, `splitParagraph`, `deleteRange`,
-`applyRunProps`, `toggleList`…). Lo propio de las diapositivas (posiciones,
-giros, formas, imágenes, capas, plantillas) es de ReboSlides.
+The text in each box is laid out by **the [rebodocs](../docs) engine**: the
+same paragraphs, lists, fonts and measurements as a DOCX, fitted to the width
+of the box with `layoutContinuous`. The caret, the selection and the point
+under the pointer come from that same layout (`caretRect`, `selectionRects`,
+`hitTest`), and editing uses its operations (`insertText`, `splitParagraph`,
+`deleteRange`, `applyRunProps`, `toggleList`…). What belongs to slides
+(positions, rotation, shapes, images, layers, templates) is ReboSlides' own.
 
-## Paquetes
+## Packages
 
-| Paquete | Qué es |
+| Package | What it is |
 | --- | --- |
-| `@reboslides/core` | El motor, sin DOM: la presentación y sus diapositivas, los elementos y sus cambios (inmutables, incluido escalar un grupo), el texto maquetado por `@rebodocs/core`, el contorno de las formas, los temas, el PDF vectorial y el archivo `.reboslides`. |
-| `@reboslides/editor` | El estudio, sin framework: la diapositiva dibujada en canvas, mover, redimensionar (también en grupo) y girar con guías de alineación, edición de texto en el sitio, panel de recursos, panel de propiedades, tira de páginas, deshacer, presentar y exportar. |
-| `@reboslides/react` | El estudio como componente de React (`SlideStudio`), o hooks headless para una interfaz propia (`SlidesProvider`, `useSlides`, `SlidesSurface`, `SlideThumbnail`). |
-| `@reboslides/collab` | Colaboración en tiempo real: el servidor de salas (`bin/reboslides-collab.mjs`), su cliente y los cambios entre ambos (`diffDecks`/`applyChanges` del core). Cada quien ve la selección de los demás y deshace solo lo suyo. |
-| `@reboslides/mcp` | Un servidor MCP (`bin/reboslides-mcp.mjs`) para que Claude y otros asistentes lean y editen presentaciones, en archivos o en vivo en una sala. |
-| `@reboslides/playground` | La aplicación donde se prueba todo. |
+| `@reboslides/core` | The engine, with no DOM: the deck and its slides, the elements and their changes (immutable, including scaling a group), text laid out by `@rebodocs/core`, shape outlines, themes, the vector PDF and the `.reboslides` file. |
+| `@reboslides/editor` | The studio, with no framework: the slide drawn on a canvas, moving, resizing (also as a group) and rotating with alignment guides, in-place text editing, the assets panel, the properties panel, the page strip, undo, presenting and exporting. |
+| `@reboslides/react` | The studio as a React component (`SlideStudio`), or headless hooks for an interface of your own (`SlidesProvider`, `useSlides`, `SlidesSurface`, `SlideThumbnail`). |
+| `@reboslides/viewer` | A read-only viewer (`createViewer`, `<SlidesViewer>`) and thumbnails of a slide as an image or a canvas (`slidePicture`, `slideCanvas`). |
+| `@reboslides/collab` | Real-time collaboration: the room server (`bin/reboslides-collab.mjs`), its client, and the changes between them (`diffDecks`/`applyChanges` from the core). Everyone sees the others' selection and undoes only their own changes. |
+| `@reboslides/mcp` | An MCP server (`bin/reboslides-mcp.mjs`) so Claude and other assistants can read and edit presentations, in files or live in a room. |
 
-Y las aplicaciones de ejemplo que usan esos paquetes:
+And the apps that use those packages:
 
-| App | Qué muestra | |
+| App | What it shows | |
 | --- | --- | --- |
-| `apps/demo` | El paquete de React: `SlideStudio`, y una interfaz propia hecha con los hooks headless. | `npm run demo` · :5191 |
-| `apps/realtime` | Varias personas en una presentación: la página, un backend que guarda las presentaciones y firma tickets, y el servidor de salas. | `npm run realtime` · :5192 |
-| `apps/assistant` | Lo mismo con Claude en un chat, que edita con las herramientas del MCP y todos lo ven. Pide `ANTHROPIC_API_KEY`. | `npm run assistant` · :5193 |
+| `apps/playground` | Where everything is tried. | `npm run dev` |
+| `apps/demo` | The React package: `SlideStudio`, and an interface of its own built with the headless hooks. | `npm run demo` · :5191 |
+| `apps/realtime` | Several people in one presentation: the page, a backend that stores the presentations and signs tickets, and the room server. | `npm run realtime` · :5192 |
+| `apps/assistant` | The same with Claude in a chat, editing with the MCP tools while everyone watches. Needs `ANTHROPIC_API_KEY`. | `npm run assistant` · :5193 |
+| `apps/viewer` | The viewer and the thumbnails. | `npm run viewer` · :5194 |
+| `apps/storage` | Presentations kept in a storage bucket: the list from a backend, files read and written through signed addresses, and versions to restore. | `npm run storage` · :5195 |
+| `apps/desktop` | The studio as a desktop app with Tauri, opening and saving `.reboslides` files. | `npm run desktop` · :5196 |
+| `apps/site` | The website and the documentation. | `npm run build:site` |
 
-`@rebodocs/core` y `@rebodocs/editor` (de este último solo su `CanvasMeasurer`)
-se enlazan desde `../docs` con `file:`; todo lo que el editor usa de rebodocs
-pasa por `packages/editor/src/engine.ts`.
+`@rebodocs/core` and `@rebodocs/editor` (only its `CanvasMeasurer` from the
+latter) are linked from `../docs` with `file:`; everything the editor uses
+from rebodocs goes through `packages/editor/src/engine.ts`.
 
 ## PDF
 
-El PDF es vectorial: fondos, degradados, formas, giros y transparencias como
-dibujo, y el texto como texto, seleccionable y buscable. Las fuentes van dentro,
-reducidas a las letras usadas, leídas y recortadas con `parseTrueType` y
-`subsetTrueType` de rebodocs; el editor descarga sus `.ttf` de Fontsource. Una
-caja con letras que ninguna fuente tiene (un emoji) va como imagen.
+The PDF is vector: backgrounds, gradients, shapes, rotation and transparency
+as drawing, and text as text, selectable and searchable. Fonts are embedded,
+cut down to the letters used, read and subset with rebodocs' `parseTrueType`
+and `subsetTrueType`; the editor downloads their `.ttf` files from
+Fontsource. A box with letters no font has (an emoji) goes in as an image.
 
-## Uso
+## Usage
 
 ```sh
 npm install
-npm run dev        # el playground
-npm test           # pruebas del core
+npm run dev        # the playground
+npm test           # core tests
 npm run typecheck
 npm run lint
 ```
@@ -58,39 +63,39 @@ npm run lint
 import { Studio, googleFontsUrl } from '@reboslides/editor';
 
 document.querySelector<HTMLLinkElement>('#fonts')!.href = googleFontsUrl();
-new Studio(document.getElementById('app')!, { storageKey: 'mi-app:deck' });
+new Studio(document.getElementById('app')!, { storageKey: 'my-app:deck', locale: 'en' });
 ```
 
-## Colaboración
+## Collaboration
 
 ```sh
-node packages/collab/bin/reboslides-collab.mjs --port 7430   # salas guardadas en ./rooms
+node packages/collab/bin/reboslides-collab.mjs --port 7430   # rooms stored in ./rooms
 ```
 
 ```tsx
 <SlideStudio deck={deck} collab={{ url: 'http://127.0.0.1:7430', room, name: 'Ana' }} />
 ```
 
-En el sitio: `/demo/?collab=http://127.0.0.1:7430`, **Compartir**, y la dirección que da en otra ventana.
+On the site: `/demo/?collab=http://127.0.0.1:7430`, **Share**, and open the address it gives in another window.
 
-## Asistentes (MCP)
+## Assistants (MCP)
 
 ```sh
-claude mcp add reboslides -- node /ruta/a/slides/packages/mcp/bin/reboslides-mcp.mjs --root ~/presentaciones
+claude mcp add reboslides -- node /path/to/slides/packages/mcp/bin/reboslides-mcp.mjs --root ~/presentations
 ```
 
-## Atajos
+## Shortcuts
 
 | | |
 | --- | --- |
-| Doble clic / Enter | Editar el texto |
-| Esc | Salir del texto · deseleccionar |
-| ⌘Z · ⇧⌘Z | Deshacer · rehacer |
-| ⌘D | Duplicar |
-| ⌘C · ⌘X · ⌘V | Copiar, cortar, pegar (también imágenes y texto de fuera) |
-| Flechas (⇧ ×10) | Mover |
-| ⌘B · ⌘I · ⌘U | Negrita, cursiva, subrayado |
-| Alt al arrastrar | Sin guías |
-| ⇧ al girar | De 15 en 15 grados |
-| Esquina de un grupo | Escalarlo entero (⇧ para estirarlo) |
-| ⌘ + rueda | Zoom |
+| Double click / Enter | Edit the text |
+| Esc | Leave the text · deselect |
+| ⌘Z · ⇧⌘Z | Undo · redo |
+| ⌘D | Duplicate |
+| ⌘C · ⌘X · ⌘V | Copy, cut, paste (also images and text from elsewhere) |
+| Arrows (⇧ ×10) | Move |
+| ⌘B · ⌘I · ⌘U | Bold, italic, underline |
+| Alt while dragging | No guides |
+| ⇧ while rotating | In steps of 15 degrees |
+| Corner of a group | Scale it whole (⇧ to stretch it) |
+| ⌘ + wheel | Zoom |
