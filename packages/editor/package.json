@@ -1,6 +1,6 @@
 {
   "name": "@reboslides/editor",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "description": "A design studio for the browser: the slide drawn on canvas, elements moved, resized and turned by hand, text edited in place, panels of templates and elements, a strip of slides, presenting and export. No framework.",
   "license": "MIT",
   "private": true,

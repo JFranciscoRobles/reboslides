@@ -1,6 +1,6 @@
 {
   "name": "@reboslides/demo",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "description": "The React package as an application uses it: the whole studio, and an interface of one's own built on the headless hooks.",
   "license": "MIT",
   "private": true,
@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@reboslides/react": "^0.1.0",
+    "@reboslides/react": "^0.6.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },

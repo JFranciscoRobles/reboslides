@@ -1,6 +1,6 @@
 {
   "name": "reboslides",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "description": "A design studio for presentations in the browser, in the look of the Rebo suite: slides of text, shapes and pictures placed freely, templates, presenting, and export to vector PDF. Its text is set by the rebodocs engine. React component and headless hooks, real-time collaboration, and an MCP server for AI assistants.",
   "license": "MIT",
   "private": true,

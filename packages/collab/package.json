@@ -1,6 +1,6 @@
 {
   "name": "@reboslides/collab",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "description": "Real-time collaboration on decks: the room server, its client, and the changes between them.",
   "license": "MIT",
   "private": true,

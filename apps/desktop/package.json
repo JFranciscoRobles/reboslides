@@ -1,6 +1,6 @@
 {
   "name": "@reboslides/desktop",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "description": "ReboSlides as a desktop application with Tauri: .reboslides files of the disk, a native menu, PDF, opening a deck from the Finder or the Explorer.",
   "license": "MIT",
   "private": true,
@@ -12,8 +12,8 @@
     "tauri": "tauri"
   },
   "dependencies": {
-    "@reboslides/core": "^0.1.0",
-    "@reboslides/editor": "^0.1.0",
+    "@reboslides/core": "^0.6.0",
+    "@reboslides/editor": "^0.6.0",
     "@tauri-apps/api": "^2.12.4",
     "@tauri-apps/plugin-dialog": "^2.8.3"
   },

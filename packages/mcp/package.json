@@ -1,6 +1,6 @@
 {
   "name": "@reboslides/mcp",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "description": "Tools for an AI assistant to read and edit decks: an MCP server for Claude Desktop, Claude Code and other clients, on .reboslides files or live in a room of the collaboration server.",
   "license": "MIT",
   "private": true,
