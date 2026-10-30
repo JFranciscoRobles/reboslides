@@ -1,6 +1,6 @@
 {
   "name": "@reboslides/viewer",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "A deck only to look at, in the browser: its slides one under another or as a grid, a bar to present and print, and a slide as a picture for a thumbnail. With or without React.",
   "license": "MIT",
   "private": true,

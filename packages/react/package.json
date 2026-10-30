@@ -1,6 +1,6 @@
 {
   "name": "@reboslides/react",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "The slide studio as a React component, or as headless hooks for an interface of one's own, with collaboration in both.",
   "license": "MIT",
   "private": true,

@@ -33,7 +33,7 @@ export function createMenuScreen(host: MenuHost): { open(): void; close(): void;
   const updates: (() => void)[] = [];
   const tabs: HTMLButtonElement[] = [];
   const panes: HTMLElement[] = [];
-  const screen = h('div', { class: 'rs-side', role: 'dialog', 'aria-modal': 'true', 'aria-label': t.menu });
+  const screen = h('div', { class: 'rsl-side', role: 'dialog', 'aria-modal': 'true', 'aria-label': t.menu });
   screen.hidden = true;
 
   const show = (index: number) => {
@@ -45,16 +45,21 @@ export function createMenuScreen(host: MenuHost): { open(): void; close(): void;
       pane.hidden = i !== index;
     });
   };
-  const icon = (name: keyof typeof ICONS) => h('span', { class: 'rs-side-glyph', html: ICONS[name], 'aria-hidden': 'true' });
+  const icon = (name: keyof typeof ICONS) => h('span', { class: 'rsl-side-glyph', html: ICONS[name], 'aria-hidden': 'true' });
 
-  const list = h('div', { class: 'rs-side-list', role: 'tablist', 'aria-orientation': 'vertical' });
-  const main = h('div', { class: 'rs-side-main' });
+  const list = h('div', { class: 'rsl-side-list', role: 'tablist', 'aria-orientation': 'vertical' });
+  const main = h('div', { class: 'rsl-side-main' });
   const pane = (id: string, iconName: keyof typeof ICONS, label: string, intro: string, ...content: HTMLElement[]) => {
     const index = tabs.length;
-    const tab = h('button', { type: 'button', class: 'rs-side-tab', id: `rs-side-tab-${id}`, role: 'tab', 'aria-controls': `rs-side-pane-${id}`, onclick: () => show(index) }, icon(iconName), label);
+    const tab = h(
+      'button',
+      { type: 'button', class: 'rsl-side-tab', id: `rsl-side-tab-${id}`, role: 'tab', 'aria-controls': `rsl-side-pane-${id}`, onclick: () => show(index) },
+      icon(iconName),
+      label,
+    );
     list.append(tab);
     tabs.push(tab);
-    const node = h('section', { class: 'rs-side-pane', id: `rs-side-pane-${id}`, role: 'tabpanel', 'aria-labelledby': tab.id }, h('h2', {}, label), intro ? h('p', {}, intro) : undefined);
+    const node = h('section', { class: 'rsl-side-pane', id: `rsl-side-pane-${id}`, role: 'tabpanel', 'aria-labelledby': tab.id }, h('h2', {}, label), intro ? h('p', {}, intro) : undefined);
     node.append(...content);
     main.append(node);
     panes.push(node);
@@ -69,7 +74,7 @@ export function createMenuScreen(host: MenuHost): { open(): void; close(): void;
       const n = host.slideCount();
       count.textContent = n === 1 ? t.slideCountOne : say(t.slideCount, { n });
     });
-    return h('div', { class: 'rs-side-doc' }, withIcon ? h('span', { class: 'rs-side-icon', html: ICONS.templates }) : undefined, h('div', {}, name, count));
+    return h('div', { class: 'rsl-side-doc' }, withIcon ? h('span', { class: 'rsl-side-icon', html: ICONS.templates }) : undefined, h('div', {}, name, count));
   };
 
   /** An entry that closes the menu and then does what it says. */
@@ -78,9 +83,9 @@ export function createMenuScreen(host: MenuHost): { open(): void; close(): void;
     run();
   };
   const tile = (iconName: keyof typeof ICONS, label: string, keys: string, run: () => void) =>
-    h('button', { type: 'button', class: 'rs-side-tile', onclick: act(run) }, icon(iconName), h('span', {}, label), keys ? h('small', {}, keys) : undefined);
+    h('button', { type: 'button', class: 'rsl-side-tile', onclick: act(run) }, icon(iconName), h('span', {}, label), keys ? h('small', {}, keys) : undefined);
   const format = (iconName: keyof typeof ICONS, label: string, text: string, run: () => void) =>
-    h('button', { type: 'button', class: 'rs-side-format', onclick: act(run) }, h('span', { class: 'rs-side-icon', html: ICONS[iconName] }), h('span', {}, h('b', {}, label), h('small', {}, text)));
+    h('button', { type: 'button', class: 'rsl-side-format', onclick: act(run) }, h('span', { class: 'rsl-side-icon', html: ICONS[iconName] }), h('span', {}, h('b', {}, label), h('small', {}, text)));
 
   pane(
     'deck',
@@ -90,7 +95,7 @@ export function createMenuScreen(host: MenuHost): { open(): void; close(): void;
     card(true),
     h(
       'div',
-      { class: 'rs-side-tiles' },
+      { class: 'rsl-side-tiles' },
       tile('plus', t.menuNew, '', () => host.newDeck()),
       tile('open', t.menuOpen, '', () => host.openFile()),
       tile('save', t.menuSave, '', () => host.saveFile()),
@@ -104,7 +109,7 @@ export function createMenuScreen(host: MenuHost): { open(): void; close(): void;
     '',
     h(
       'div',
-      { class: 'rs-side-formats' },
+      { class: 'rsl-side-formats' },
       format('file', 'PDF', t.menuPdfText, () => host.exportPdf()),
       format('uploads', t.menuPng, t.menuPngText, () => host.exportPng()),
       format('save', t.menuFile, t.menuFileText, () => host.saveFile()),
@@ -112,7 +117,7 @@ export function createMenuScreen(host: MenuHost): { open(): void; close(): void;
   );
   const setLocale = host.setLocale;
   if (setLocale) {
-    const languages = h('div', { class: 'rs-side-choices', role: 'radiogroup', 'aria-label': t.menuLanguage });
+    const languages = h('div', { class: 'rsl-side-choices', role: 'radiogroup', 'aria-label': t.menuLanguage });
     for (const [value, label] of [
       ['es', 'Español'],
       ['en', 'English'],
@@ -122,7 +127,7 @@ export function createMenuScreen(host: MenuHost): { open(): void; close(): void;
           'button',
           {
             type: 'button',
-            class: 'rs-side-choice',
+            class: 'rsl-side-choice',
             role: 'radio',
             'aria-checked': String(host.language === value),
             onclick: () => {
@@ -131,13 +136,13 @@ export function createMenuScreen(host: MenuHost): { open(): void; close(): void;
               setLocale(value);
             },
           },
-          h('span', { class: 'rs-side-dot' }),
+          h('span', { class: 'rsl-side-dot' }),
           label,
         ),
       );
     pane('language', 'language', t.menuLanguage, t.menuLanguageText, languages);
   }
-  const choices = h('div', { class: 'rs-side-choices', role: 'radiogroup', 'aria-label': t.menuAppearance });
+  const choices = h('div', { class: 'rsl-side-choices', role: 'radiogroup', 'aria-label': t.menuAppearance });
   for (const [value, label] of [
     ['light', t.menuLight],
     ['dark', t.menuDark],
@@ -146,14 +151,14 @@ export function createMenuScreen(host: MenuHost): { open(): void; close(): void;
       'button',
       {
         type: 'button',
-        class: 'rs-side-choice',
+        class: 'rsl-side-choice',
         role: 'radio',
         onclick: () => {
           host.setTheme(value);
           refresh();
         },
       },
-      h('span', { class: 'rs-side-dot' }),
+      h('span', { class: 'rsl-side-dot' }),
       label,
     );
     updates.push(() => choice.setAttribute('aria-checked', String(host.theme() === value)));
@@ -161,10 +166,10 @@ export function createMenuScreen(host: MenuHost): { open(): void; close(): void;
   }
   pane('appearance', 'contrast', t.menuAppearance, t.menuAppearanceText, choices);
 
-  const back = h('button', { type: 'button', class: 'rs-side-back', onclick: () => close() }, icon('goBack'), h('span', {}, t.menuBack));
-  const x = h('button', { type: 'button', class: 'rs-side-x', 'aria-label': t.menuClose, title: t.menuClose, html: ICONS.close, onclick: () => close() });
+  const back = h('button', { type: 'button', class: 'rsl-side-back', onclick: () => close() }, icon('goBack'), h('span', {}, t.menuBack));
+  const x = h('button', { type: 'button', class: 'rsl-side-x', 'aria-label': t.menuClose, title: t.menuClose, html: ICONS.close, onclick: () => close() });
   main.append(x);
-  screen.append(h('nav', { class: 'rs-side-nav', 'aria-label': t.menu }, back, list, card(false)), main);
+  screen.append(h('nav', { class: 'rsl-side-nav', 'aria-label': t.menu }, back, list, card(false)), main);
   host.root.append(screen);
 
   const refresh = () => {

@@ -100,14 +100,14 @@ function centred(studio: Studio, element: Element): Element {
 function templatesTab(studio: Studio): Node[] {
   const { t, names, language } = studio;
   const theme = THEMES.find((t) => t.id === studio.themeId) ?? THEMES[0];
-  const chips = h('div', { class: 'rs-chips' });
+  const chips = h('div', { class: 'rsl-chips' });
   for (const one of THEMES) {
     chips.append(
       h(
         'button',
         {
           type: 'button',
-          class: `rs-chip${one.id === theme.id ? ' rs-on' : ''}`,
+          class: `rsl-chip${one.id === theme.id ? ' rsl-on' : ''}`,
           onclick: () => {
             studio.themeId = one.id;
             studio.invalidate('panel');
@@ -118,12 +118,12 @@ function templatesTab(studio: Studio): Node[] {
       ),
     );
   }
-  const grid = h('div', { class: 'rs-grid' });
+  const grid = h('div', { class: 'rsl-grid' });
   for (const layout of LAYOUTS) {
     const slide = layoutSlide(theme, layout, studio.deck.size, language);
     const tile = h('button', {
       type: 'button',
-      class: 'rs-tile',
+      class: 'rsl-tile',
       title: say(t.addLayout, { name: names.layout(layout) }),
       onclick: () => studio.insertSlide(layoutSlide(theme, layout, studio.deck.size, language)),
     });
@@ -134,7 +134,7 @@ function templatesTab(studio: Studio): Node[] {
     h('h3', {}, t.themes),
     chips,
     h('h3', {}, t.slides),
-    h('p', { class: 'rs-note' }, t.slidesNote),
+    h('p', { class: 'rsl-note' }, t.slidesNote),
     grid,
     h('h3', {}, t.wholeDeck),
     h(
@@ -150,19 +150,19 @@ function templatesTab(studio: Studio): Node[] {
       },
       say(t.startWithTheme, { theme: names.theme(theme) }),
     ),
-    h('p', { class: 'rs-note' }, t.startWithThemeNote),
+    h('p', { class: 'rsl-note' }, t.startWithThemeNote),
   ];
 }
 
 function elementsTab(studio: Studio): Node[] {
-  const shapes = h('div', { class: 'rs-grid rs-grid-4' });
+  const shapes = h('div', { class: 'rsl-grid rsl-grid-4' });
   for (const kind of SHAPE_KINDS) {
     const line = kind === 'line';
     const w = line ? 40 : kind === 'arrow' ? 44 : 40;
     const hh = line ? 4 : kind === 'arrow' ? 26 : 40;
     const tile = h('button', {
       type: 'button',
-      class: 'rs-tile rs-shape-tile',
+      class: 'rsl-tile rsl-shape-tile',
       title: studio.names.shape(kind),
       'aria-label': studio.names.shape(kind),
       onclick: () => {
@@ -173,14 +173,14 @@ function elementsTab(studio: Studio): Node[] {
     tile.innerHTML = `<svg viewBox="-4 -4 ${w + 8} ${hh + 8}"><path d="${svgPath(shapePath(kind, w, hh))}" fill="${line ? 'none' : 'currentColor'}" stroke="currentColor" stroke-width="${line ? 3 : 0}"/></svg>`;
     shapes.append(tile);
   }
-  const stickers = h('div', { class: 'rs-grid rs-grid-4' });
+  const stickers = h('div', { class: 'rsl-grid rsl-grid-4' });
   for (const emoji of STICKERS) {
     stickers.append(
       h(
         'button',
         {
           type: 'button',
-          class: 'rs-tile rs-emoji',
+          class: 'rsl-tile rsl-emoji',
           onclick: () => studio.addAndSelect([centred(studio, createText(emoji, { x: 0, y: 0, width: 140 }, { run: { fontSize: 96 }, paragraph: { align: 'center', lineHeight: 1 } }))]),
         },
         emoji,
@@ -198,7 +198,7 @@ function textTab(studio: Studio): Node[] {
       'button',
       {
         type: 'button',
-        class: `rs-btn rs-wide ${cls}`,
+        class: `rsl-btn rsl-wide ${cls}`,
         onclick: () => {
           const box = createText(text, { x: width * 0.15, y: height * 0.4, width: width * 0.7 }, { run: { fontSize: size, bold }, paragraph: { align: 'center' } });
           studio.addAndSelect([box]);
@@ -213,7 +213,7 @@ function textTab(studio: Studio): Node[] {
       'button',
       {
         type: 'button',
-        class: 'rs-pair',
+        class: 'rsl-pair',
         onclick: () => {
           const title = createText(
             sample,
@@ -230,9 +230,9 @@ function textTab(studio: Studio): Node[] {
   });
   return [
     h('h3', {}, t.addText),
-    add(t.aHeading, 64, true, 'rs-add-heading', t.addHeading),
-    add(t.aSubheading, 36, true, 'rs-add-sub', t.addSubheading),
-    add(t.aParagraph, 22, false, 'rs-add-body', t.addParagraph),
+    add(t.aHeading, 64, true, 'rsl-add-heading', t.addHeading),
+    add(t.aSubheading, 36, true, 'rsl-add-sub', t.addSubheading),
+    add(t.aParagraph, 22, false, 'rsl-add-body', t.addParagraph),
     h('h3', {}, t.fontPairs),
     ...pairs,
   ];
@@ -243,27 +243,27 @@ function uploadsTab(studio: Studio): Node[] {
   input.addEventListener('change', () => input.files && studio.addImageFiles([...input.files]));
   const drop = h(
     'div',
-    { class: 'rs-drop' },
+    { class: 'rsl-drop' },
     h('p', {}, studio.t.dropPictures),
     h('button', { type: 'button', class: 'sp-button sp-button-accent', onclick: () => input.click() }, studio.t.uploadPictures),
     input,
   );
-  drop.addEventListener('dragover', (e) => (e.preventDefault(), drop.classList.add('rs-over')));
-  drop.addEventListener('dragleave', () => drop.classList.remove('rs-over'));
+  drop.addEventListener('dragover', (e) => (e.preventDefault(), drop.classList.add('rsl-over')));
+  drop.addEventListener('dragleave', () => drop.classList.remove('rsl-over'));
   drop.addEventListener('drop', (e) => {
     e.preventDefault();
-    drop.classList.remove('rs-over');
+    drop.classList.remove('rsl-over');
     studio.addImageFiles([...(e.dataTransfer?.files ?? [])]);
   });
   // The pictures of this session and those already in the deck, each once.
   const known = new Map(studio.uploads.map((u) => [u.src, u]));
   for (const slide of studio.deck.slides) for (const e of slide.elements) if (e.type === 'image' && !known.has(e.src)) known.set(e.src, { src: e.src, width: e.naturalWidth, height: e.naturalHeight });
-  const grid = h('div', { class: 'rs-grid' });
+  const grid = h('div', { class: 'rsl-grid' });
   for (const image of known.values()) {
     grid.append(
       h(
         'button',
-        { type: 'button', class: 'rs-tile', onclick: () => studio.addAndSelect([createImage(image.src, image.width, image.height, studio.deck.size)]) },
+        { type: 'button', class: 'rsl-tile', onclick: () => studio.addAndSelect([createImage(image.src, image.width, image.height, studio.deck.size)]) },
         h('img', { src: image.src, alt: '' }),
       ),
     );
@@ -274,14 +274,14 @@ function uploadsTab(studio: Studio): Node[] {
 function backgroundTab(studio: Studio): Node[] {
   const { t } = studio;
   const apply = (fill: Fill) => studio.commit(setBackground(studio.deck, studio.slide.id, fill));
-  const swatch = (fill: Fill) => h('button', { type: 'button', class: 'rs-swatch', style: `background:${cssFill(fill)}`, 'aria-label': t.useAsBackground, onclick: () => apply(fill) });
+  const swatch = (fill: Fill) => h('button', { type: 'button', class: 'rsl-swatch', style: `background:${cssFill(fill)}`, 'aria-label': t.useAsBackground, onclick: () => apply(fill) });
   const custom = h('input', { type: 'color', 'aria-label': t.customColor, style: 'width:100%;height:36px;border:0;padding:0;background:none' });
   custom.addEventListener('input', () => studio.commit(setBackground(studio.deck, studio.slide.id, solid(fromInput(custom.value))), 'background'));
   return [
     h('h3', {}, t.colors),
-    h('div', { class: 'rs-grid', style: 'grid-template-columns:repeat(6,1fr)' }, ...SOLIDS.map((c) => swatch(solid(c)))),
+    h('div', { class: 'rsl-grid', style: 'grid-template-columns:repeat(6,1fr)' }, ...SOLIDS.map((c) => swatch(solid(c)))),
     h('h3', {}, t.gradients),
-    h('div', { class: 'rs-grid rs-grid-4' }, ...GRADIENTS.map(swatch)),
+    h('div', { class: 'rsl-grid rsl-grid-4' }, ...GRADIENTS.map(swatch)),
     h('h3', {}, t.custom),
     custom,
     h('h3', {}, t.wholeDeck),
@@ -289,7 +289,7 @@ function backgroundTab(studio: Studio): Node[] {
       'button',
       {
         type: 'button',
-        class: 'rs-btn rs-wide',
+        class: 'rsl-btn rsl-wide',
         onclick: () => {
           const bg = studio.slide.background;
           studio.commit({ ...studio.deck, slides: studio.deck.slides.map((s) => (s.background === bg ? s : { ...s, background: bg })) });
@@ -309,7 +309,7 @@ function layersTab(studio: Studio): Node[] {
     const name = e.type === 'text' ? plainTextOf(e).split('\n')[0] || t.text : e.type === 'image' ? t.image : studio.names.shape(e.shape);
     const lock = h('button', {
       type: 'button',
-      class: 'rs-btn',
+      class: 'rsl-btn',
       title: e.locked ? t.unlock : t.lock,
       onclick: (ev: Event) => {
         ev.stopPropagation();
@@ -329,14 +329,14 @@ function layersTab(studio: Studio): Node[] {
     list.append(
       h(
         'div',
-        { class: `rs-layer${studio.selection.includes(e.id) ? ' rs-on' : ''}`, role: 'button', tabindex: 0, onclick: () => studio.select([e.id]) },
+        { class: `rsl-layer${studio.selection.includes(e.id) ? ' rsl-on' : ''}`, role: 'button', tabindex: 0, onclick: () => studio.select([e.id]) },
         thumb,
         h('span', { style: e.type === 'text' ? `font-family:"${e.doc.paragraphs[0]?.runs[0]?.props.fontFamily ?? 'Inter'}"` : '' }, name),
         lock,
       ),
     );
   }
-  return [h('h3', {}, t.layersTop), elements.length ? list : h('p', { class: 'rs-note' }, t.emptySlide)];
+  return [h('h3', {}, t.layersTop), elements.length ? list : h('p', { class: 'rsl-note' }, t.emptySlide)];
 }
 
 export function renderPanel(studio: Studio): void {

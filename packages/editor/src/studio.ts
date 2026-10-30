@@ -242,7 +242,7 @@ export class Studio {
     this.names = namesFor(this.language);
     this.onLocale = options.onLocale;
     this.onChange = options.onChange;
-    this.root = h('div', { class: `rs-app${this.embedded ? ' rs-embedded' : ''}` });
+    this.root = h('div', { class: `rsl-app${this.embedded ? ' rsl-embedded' : ''}` });
     parent.append(this.root);
     this.build();
     this.setTheme(options.theme ?? storedTheme() ?? (window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
@@ -480,7 +480,7 @@ export class Studio {
 
   private build(): void {
     this.titleInput = h('input', {
-      class: 'rs-title',
+      class: 'rsl-title',
       'aria-label': this.t.deckName,
       oninput: () => this.commit(setTitle(this.deck, this.titleInput.value), 'title'),
     });
@@ -493,22 +493,22 @@ export class Studio {
     presentButton.innerHTML = `${ICONS.play}<span>${t.present}</span>`;
     const top = h(
       'header',
-      { class: 'rs-top' },
+      { class: 'rsl-top' },
       menuButton,
-      h('div', { class: 'rs-divider-v' }),
-      h('div', { class: 'rs-app-icon', 'aria-hidden': 'true' }),
-      h('div', { class: 'rs-app-name' }, 'ReboSlides'),
-      h('div', { class: 'rs-divider-v' }),
+      h('div', { class: 'rsl-divider-v' }),
+      h('div', { class: 'rsl-app-icon', 'aria-hidden': 'true' }),
+      h('div', { class: 'rsl-app-name' }, 'ReboSlides'),
+      h('div', { class: 'rsl-divider-v' }),
       this.undoButton,
       this.redoButton,
-      h('div', { class: 'rs-spacer' }),
+      h('div', { class: 'rsl-spacer' }),
       this.titleInput,
-      h('div', { class: 'rs-spacer' }),
+      h('div', { class: 'rsl-spacer' }),
       exportButton,
       presentButton,
     );
 
-    this.rail = h('nav', { class: 'rs-rail', 'aria-label': t.panels });
+    this.rail = h('nav', { class: 'rsl-rail', 'aria-label': t.panels });
     for (const tab of PANEL_TABS) {
       const b = h('button', {
         type: 'button',
@@ -525,17 +525,17 @@ export class Studio {
       b.innerHTML = `${ICONS[tab.icon]}<span>${name}</span>`;
       this.rail.append(b);
     }
-    this.panel = h('aside', { class: 'rs-panel' });
+    this.panel = h('aside', { class: 'rsl-panel' });
 
-    this.properties = h('aside', { class: 'rs-props', 'aria-label': t.properties });
+    this.properties = h('aside', { class: 'rsl-props', 'aria-label': t.properties });
     this.canvas = h('canvas');
-    this.overlay = h('div', { class: 'rs-overlay' });
-    this.stage = h('div', { class: 'rs-stage' }, this.canvas, this.overlay);
-    this.viewport = h('div', { class: 'rs-viewport', tabindex: 0 }, this.stage);
-    this.input = h('textarea', { class: 'rs-input', 'aria-label': t.text, autocapitalize: 'off', spellcheck: false });
+    this.overlay = h('div', { class: 'rsl-overlay' });
+    this.stage = h('div', { class: 'rsl-stage' }, this.canvas, this.overlay);
+    this.viewport = h('div', { class: 'rsl-viewport', tabindex: 0 }, this.stage);
+    this.input = h('textarea', { class: 'rsl-input', 'aria-label': t.text, autocapitalize: 'off', spellcheck: false });
 
-    this.strip = h('div', { class: 'rs-strip' });
-    this.unitPicker = h('select', { class: 'sp-picker rs-unit', 'aria-label': t.unitOfMeasure, title: t.unitOfMeasure });
+    this.strip = h('div', { class: 'rsl-strip' });
+    this.unitPicker = h('select', { class: 'sp-picker rsl-unit', 'aria-label': t.unitOfMeasure, title: t.unitOfMeasure });
     for (const unit of UNITS) this.unitPicker.append(h('option', { value: unit }, unit));
     this.unitPicker.addEventListener('change', () => this.setUnit(this.unitPicker.value as Unit));
     this.counter = h('span');
@@ -552,11 +552,11 @@ export class Studio {
     });
     const bottom = h(
       'div',
-      { class: 'rs-bottom' },
+      { class: 'rsl-bottom' },
       this.strip,
       h(
         'div',
-        { class: 'rs-zoom' },
+        { class: 'rsl-zoom' },
         this.counter,
         this.unitPicker,
         this.zoomInput,
@@ -574,11 +574,11 @@ export class Studio {
         ),
       ),
     );
-    const main = h('main', { class: 'rs-main' }, this.viewport, bottom);
-    this.body = h('div', { class: 'rs-body' }, this.rail, this.panel, main, this.properties);
+    const main = h('main', { class: 'rsl-main' }, this.viewport, bottom);
+    this.body = h('div', { class: 'rsl-body' }, this.rail, this.panel, main, this.properties);
     if (!this.chrome) {
       // The slide alone: the application draws the rest.
-      this.root.classList.add('rs-bare');
+      this.root.classList.add('rsl-bare');
       this.root.append(this.viewport, this.input);
     } else this.root.append(top, this.body, this.input);
     // The menu of the deck, from the first button of the bar, as Rebodocs has it.
@@ -723,7 +723,7 @@ export class Studio {
 
   private boxFor(e: Pick<Element, 'x' | 'y' | 'width' | 'height' | 'rotation'>, cls: string): HTMLElement {
     const s = this.scale;
-    return h('div', { class: `rs-box ${cls}`, style: `left:${e.x * s}px;top:${e.y * s}px;width:${e.width * s}px;height:${e.height * s}px;transform:rotate(${e.rotation}deg)` });
+    return h('div', { class: `rsl-box ${cls}`, style: `left:${e.x * s}px;top:${e.y * s}px;width:${e.width * s}px;height:${e.height * s}px;transform:rotate(${e.rotation}deg)` });
   }
 
   private renderOverlay(): void {
@@ -735,42 +735,42 @@ export class Studio {
     for (const peer of this.peers) {
       if (peer.slide !== this.slide.id) continue;
       for (const e of this.slide.elements.filter((x) => peer.selection.includes(x.id))) {
-        const box = this.boxFor(e, 'rs-peer-box');
+        const box = this.boxFor(e, 'rsl-peer-box');
         box.style.setProperty('--peer', `#${peer.color.replace('#', '')}`);
-        box.append(h('span', { class: 'rs-peer-name' }, peer.name));
+        box.append(h('span', { class: 'rsl-peer-name' }, peer.name));
         o.append(box);
       }
     }
     const hover = this.slide.elements.find((e) => e.id === this.hoverId && !this.selection.includes(e.id));
-    if (hover && !this.gesture) o.append(this.boxFor(hover, 'rs-hover-box'));
+    if (hover && !this.gesture) o.append(this.boxFor(hover, 'rsl-hover-box'));
     for (const e of picked) {
-      const box = this.boxFor(e, 'rs-sel-box');
+      const box = this.boxFor(e, 'rsl-sel-box');
       o.append(box);
       if (this.editing?.id === e.id && e.type === 'text') this.drawCaret(box, e);
       else if (picked.length === 1 && !e.locked && this.gesture?.kind !== 'move') this.addHandles(box, e);
     }
     if (picked.length > 1) {
       const bounds = unionOf(picked.map(boundsOf));
-      const box = this.boxFor({ ...bounds, rotation: 0 }, 'rs-group-box');
+      const box = this.boxFor({ ...bounds, rotation: 0 }, 'rsl-group-box');
       o.append(box);
       // The box of several is scaled from its corners, as a whole, and stretched from its sides.
       if (picked.some((e) => !e.locked) && this.gesture?.kind !== 'move') this.placeHandles(box, bounds.width * s, bounds.height * s, ['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'], false);
     }
     for (const g of this.guides) {
-      if (g.x !== undefined) o.append(h('div', { class: 'rs-guide', style: `left:${g.x * s - 0.5}px;top:0;width:1px;height:100%` }));
-      if (g.y !== undefined) o.append(h('div', { class: 'rs-guide', style: `top:${g.y * s - 0.5}px;left:0;height:1px;width:100%` }));
+      if (g.x !== undefined) o.append(h('div', { class: 'rsl-guide', style: `left:${g.x * s - 0.5}px;top:0;width:1px;height:100%` }));
+      if (g.y !== undefined) o.append(h('div', { class: 'rsl-guide', style: `top:${g.y * s - 0.5}px;left:0;height:1px;width:100%` }));
     }
     const g = this.gesture;
     if (g?.kind === 'marquee') {
       const r = rectOf(g.start, g.now);
-      o.append(h('div', { class: 'rs-marquee', style: `left:${r.x * s}px;top:${r.y * s}px;width:${r.width * s}px;height:${r.height * s}px` }));
+      o.append(h('div', { class: 'rsl-marquee', style: `left:${r.x * s}px;top:${r.y * s}px;width:${r.width * s}px;height:${r.height * s}px` }));
     }
     if ((g?.kind === 'resize' || g?.kind === 'rotate' || g?.kind === 'group') && picked.length) {
       const e = picked[0];
       const b = g.kind === 'group' ? unionOf(picked.map(boundsOf)) : boundsOf(e);
       const sized = g.kind === 'group' ? b : e;
       const tag = g.kind === 'rotate' ? `${Math.round(e.rotation)}°` : `${formatLength(sized.width, this.unit)} × ${formatLength(sized.height, this.unit)}`;
-      o.append(h('div', { class: 'rs-size-tag', style: `left:${(b.x + b.width / 2) * s}px;top:${(b.y + b.height) * s + 34}px` }, tag));
+      o.append(h('div', { class: 'rsl-size-tag', style: `left:${(b.x + b.width / 2) * s}px;top:${(b.y + b.height) * s + 34}px` }, tag));
     }
   }
 
@@ -785,11 +785,11 @@ export class Studio {
     const at: Record<Exclude<Handle, 'rotate'>, [number, number]> = { nw: [0, 0], n: [w / 2, 0], ne: [w, 0], e: [w, hh / 2], se: [w, hh], s: [w / 2, hh], sw: [0, hh], w: [0, hh / 2] };
     const cursors: Record<string, string> = { nw: 'nwse', se: 'nwse', ne: 'nesw', sw: 'nesw', n: 'ns', s: 'ns', e: 'ew', w: 'ew' };
     for (const handle of handles as Exclude<Handle, 'rotate'>[]) {
-      const side = handle.length === 1 ? (handle === 'e' || handle === 'w' ? ' rs-side-h' : ' rs-side-v') : '';
-      box.append(h('div', { class: `rs-handle${side}`, 'data-handle': handle, style: `left:${at[handle][0]}px;top:${at[handle][1]}px;cursor:${cursors[handle]}-resize` }));
+      const side = handle.length === 1 ? (handle === 'e' || handle === 'w' ? ' rsl-side-h' : ' rsl-side-v') : '';
+      box.append(h('div', { class: `rsl-handle${side}`, 'data-handle': handle, style: `left:${at[handle][0]}px;top:${at[handle][1]}px;cursor:${cursors[handle]}-resize` }));
     }
     if (!turns) return;
-    const rotate = h('div', { class: 'rs-handle rs-rotate', 'data-handle': 'rotate', style: `left:${w / 2}px;top:${hh + 28}px`, title: this.t.rotate });
+    const rotate = h('div', { class: 'rsl-handle rsl-rotate', 'data-handle': 'rotate', style: `left:${w / 2}px;top:${hh + 28}px`, title: this.t.rotate });
     rotate.innerHTML =
       '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 12a8 8 0 11-2.3-5.6"/><path d="M20 4v5h-5"/></svg>';
     box.append(rotate);
@@ -802,10 +802,10 @@ export class Studio {
     const dy = textOffsetOf(e, layout);
     const range = orderedRange(ed.anchor, ed.focus);
     for (const r of selectionRects(layout, this.measurer, range))
-      box.append(h('div', { class: 'rs-sel-rect', style: `left:${r.x * s}px;top:${(r.y + dy) * s}px;width:${Math.max(2, r.width * s)}px;height:${r.height * s}px` }));
+      box.append(h('div', { class: 'rsl-sel-rect', style: `left:${r.x * s}px;top:${(r.y + dy) * s}px;width:${Math.max(2, r.width * s)}px;height:${r.height * s}px` }));
     if (comparePositions(ed.anchor, ed.focus) === 0 && document.activeElement === this.input) {
       const c = caretRect(layout, this.measurer, ed.focus);
-      box.append(h('div', { class: 'rs-caret', style: `left:${c.x * s - 1}px;top:${(c.y + dy) * s}px;height:${c.height * s}px` }));
+      box.append(h('div', { class: 'rsl-caret', style: `left:${c.x * s - 1}px;top:${(c.y + dy) * s}px;height:${c.height * s}px` }));
     }
   }
 
@@ -870,7 +870,7 @@ export class Studio {
       this.gesture = { kind: 'move', start: p, deck: this.deck, moved: false };
       return;
     }
-    if (target.closest('.rs-stage') || target === this.viewport) {
+    if (target.closest('.rsl-stage') || target === this.viewport) {
       this.viewport.focus({ preventScroll: true });
       this.stopEditing();
       this.gesture = { kind: 'marquee', start: p, now: p, before: e.shiftKey ? this.selection : [] };
@@ -1343,7 +1343,7 @@ export class Studio {
         thumb = { slide, canvas };
         this.thumbs.set(slide.id, thumb);
       }
-      const tools = h('div', { class: 'rs-thumb-tools' });
+      const tools = h('div', { class: 'rsl-thumb-tools' });
       const tool = (icon: string, label: string, act: () => void) => {
         const t = h('span', {
           title: label,
@@ -1365,20 +1365,20 @@ export class Studio {
         'button',
         {
           type: 'button',
-          class: `rs-thumb${i === this.current ? ' rs-on' : ''}`,
+          class: `rsl-thumb${i === this.current ? ' rsl-on' : ''}`,
           draggable: true,
           'aria-label': say(this.t.slideN, { n: i + 1 }),
           onclick: () => this.goTo(i),
           ondragstart: () => (this.dragSlide = i),
           ondragover: (ev: Event) => {
             ev.preventDefault();
-            item.classList.add('rs-drop-before');
+            item.classList.add('rsl-drop-before');
           },
-          ondragleave: () => item.classList.remove('rs-drop-before'),
+          ondragleave: () => item.classList.remove('rsl-drop-before'),
           ondrop: (ev: Event) => {
             ev.preventDefault();
             ev.stopPropagation();
-            item.classList.remove('rs-drop-before');
+            item.classList.remove('rsl-drop-before');
             const from = this.dragSlide;
             if (from < 0) return;
             const to = from < i ? i - 1 : i;
@@ -1388,26 +1388,26 @@ export class Studio {
           },
         },
         thumb.canvas,
-        h('span', { class: 'rs-num' }, String(i + 1)),
+        h('span', { class: 'rsl-num' }, String(i + 1)),
         tools,
       );
       items.push(item);
     });
     for (const id of this.thumbs.keys()) if (!seen.has(id)) this.thumbs.delete(id);
-    const add = h('button', { type: 'button', class: 'rs-add-slide', title: this.t.addSlide, 'aria-label': this.t.addSlide, onclick: () => this.insertSlide() });
+    const add = h('button', { type: 'button', class: 'rsl-add-slide', title: this.t.addSlide, 'aria-label': this.t.addSlide, onclick: () => this.insertSlide() });
     add.innerHTML = ICONS.plus;
     this.strip.replaceChildren(...items, add);
-    for (const tab of this.rail.querySelectorAll<HTMLElement>('[data-tab]')) tab.classList.toggle('rs-on', tab.dataset.tab === this.panelTab);
-    this.body.classList.toggle('rs-folded', !this.panelTab);
+    for (const tab of this.rail.querySelectorAll<HTMLElement>('[data-tab]')) tab.classList.toggle('rsl-on', tab.dataset.tab === this.panelTab);
+    this.body.classList.toggle('rsl-folded', !this.panelTab);
   }
 
   // —— Files, export, presenting ——
 
   /** `content` in a box under `anchor`, until a click elsewhere. */
   openPopover(anchor: HTMLElement, content: Node[], role = 'dialog'): HTMLElement {
-    document.querySelector('.rs-menu')?.remove();
+    document.querySelector('.rsl-menu')?.remove();
     const r = anchor.getBoundingClientRect();
-    const menu = h('div', { class: 'rs-menu', role, style: `top:${r.bottom + 6}px;left:${r.left}px` }, ...content);
+    const menu = h('div', { class: 'rsl-menu', role, style: `top:${r.bottom + 6}px;left:${r.left}px` }, ...content);
     this.root.append(menu);
     // Kept inside the window: one opened from the right edge opens leftwards.
     menu.style.left = `${Math.max(8, Math.min(r.left, window.innerWidth - menu.offsetWidth - 8))}px`;
@@ -1512,8 +1512,8 @@ export class Studio {
     this.presenting = true;
     let index = from;
     const canvas = h('canvas');
-    const count = h('div', { class: 'rs-present-count' });
-    const screen = h('div', { class: 'rs-present', tabindex: 0 }, canvas, count);
+    const count = h('div', { class: 'rsl-present-count' });
+    const screen = h('div', { class: 'rsl-present', tabindex: 0 }, canvas, count);
     const draw = () => {
       const dpr = window.devicePixelRatio || 1;
       const { width, height } = this.deck.size;
@@ -1560,8 +1560,8 @@ export class Studio {
   }
 
   toast(message: string): void {
-    document.querySelector('.rs-toast')?.remove();
-    const t = h('div', { class: 'rs-toast', role: 'status' }, message);
+    document.querySelector('.rsl-toast')?.remove();
+    const t = h('div', { class: 'rsl-toast', role: 'status' }, message);
     this.root.append(t);
     setTimeout(() => t.remove(), 2600);
   }

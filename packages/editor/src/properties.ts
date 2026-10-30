@@ -167,7 +167,7 @@ function picker<T extends string | number>(label: string, value: T, options: [T,
 function actionButton(icon: string, label: string, act: () => void, selected = false, disabled = false): HTMLButtonElement {
   const b = h('button', {
     type: 'button',
-    class: `sp-action-button${selected ? ' is-selected' : ''}`,
+    class: `sp-action-button${selected ? ' sp-selected' : ''}`,
     title: label,
     'aria-label': label,
     'aria-pressed': selected ? 'true' : undefined,

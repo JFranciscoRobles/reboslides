@@ -105,15 +105,15 @@ Other things you can call:
 
 ## Its look
 
-The studio looks as the rest of the Rebo suite does, islands on a warm canvas as in Rebodocs, in CSS it puts in the page once, under the classes `rs-` and `sp-`. Its colours are custom properties on `.rs-app`; override them to make it yours:
+The studio looks as the rest of the Rebo suite does, islands on a warm canvas as in Rebodocs, in CSS it puts in the page once, under the classes `rsl-` and `sp-`. Its colours are custom properties on `.rsl-app`; override them to make it yours:
 
 ```css
-.rs-app,
-.rs-app[data-theme='dark'] {
+.rsl-app,
+.rsl-app[data-theme='dark'] {
   --accent: #0b57d0;
   --accent-hover: #08398a;
   --accent-subtle: #e8f0fd;
 }
 ```
 
-The dark theme sets its own values under `.rs-app[data-theme='dark']`, so an override meant for both names both.
+The dark theme sets its own values under `.rsl-app[data-theme='dark']`, so an override meant for both names both.

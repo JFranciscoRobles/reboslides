@@ -1,6 +1,6 @@
 {
   "name": "@reboslides/site",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "reboslides.com: the landing page, the studio to try, and the developer documentation.",
   "license": "MIT",
   "private": true,
@@ -11,10 +11,10 @@
     "start": "npx serve out -l 5198"
   },
   "dependencies": {
-    "@reboslides/collab": "^0.6.0",
-    "@reboslides/core": "^0.6.0",
-    "@reboslides/editor": "^0.6.0",
-    "@reboslides/react": "^0.6.0",
+    "@reboslides/collab": "^0.7.0",
+    "@reboslides/core": "^0.7.0",
+    "@reboslides/editor": "^0.7.0",
+    "@reboslides/react": "^0.7.0",
     "markdown-it": "^15.0.2",
     "markdown-it-anchor": "^10.0.0",
     "next": "^16.4.3",

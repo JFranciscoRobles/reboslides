@@ -1,6 +1,6 @@
 {
   "name": "@reboslides/realtime",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Several people on one deck at once: the collaboration server, a backend that keeps the decks and says who may come in, and the page.",
   "license": "MIT",
   "private": true,
@@ -10,13 +10,13 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@reboslides/core": "^0.6.0",
-    "@reboslides/react": "^0.6.0",
+    "@reboslides/core": "^0.7.0",
+    "@reboslides/react": "^0.7.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "@reboslides/collab": "^0.6.0",
+    "@reboslides/collab": "^0.7.0",
     "@vitejs/plugin-react": "^6.1.1"
   }
 }

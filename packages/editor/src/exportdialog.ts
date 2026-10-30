@@ -152,7 +152,7 @@ export function openExportDialog(studio: Studio, anchor: HTMLElement): void {
           progress: (f) => (bar.style.width = `${Math.round(f * 100)}%`),
           t,
         });
-        document.querySelector('.rs-menu')?.remove();
+        document.querySelector('.rsl-menu')?.remove();
       } catch (e) {
         error.textContent = say(t.downloadFailed, { error: (e as Error).message });
       } finally {

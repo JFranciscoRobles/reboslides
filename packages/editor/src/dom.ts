@@ -22,14 +22,14 @@ export function h<K extends keyof HTMLElementTagNameMap>(tag: K, attrs: Attrs = 
 export function button(icon: string, label: string, onclick: () => void, options: { text?: string; on?: boolean; disabled?: boolean; class?: string } = {}): HTMLButtonElement {
   const b = h('button', {
     type: 'button',
-    class: `rs-btn${options.on ? ' rs-on' : ''}${options.class ? ` ${options.class}` : ''}`,
+    class: `rsl-btn${options.on ? ' rsl-on' : ''}${options.class ? ` ${options.class}` : ''}`,
     title: label,
     'aria-label': label,
     disabled: options.disabled,
     onclick: () => onclick(),
   });
   b.innerHTML = icon;
-  if (options.text) b.append(h('span', { class: 'rs-btn-text' }, options.text));
+  if (options.text) b.append(h('span', { class: 'rsl-btn-text' }, options.text));
   return b;
 }
 

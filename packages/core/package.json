@@ -1,6 +1,6 @@
 {
   "name": "@reboslides/core",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "The engine: the deck and its slides, the elements placed on them and the changes made to them, templates, PDF and PPTX, and the text of each box set by @rebodocs/core. No DOM.",
   "license": "MIT",
   "private": true,

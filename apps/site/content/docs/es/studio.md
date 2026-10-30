@@ -105,15 +105,15 @@ Otras cosas que puedes llamar:
 
 ## Su aspecto {#its-look}
 
-El estudio se ve como el resto de la suite Rebo, islas sobre un lienzo cálido como en Rebodocs, con un CSS que pone en la página una vez, bajo las clases `rs-` y `sp-`. Sus colores son propiedades personalizadas de `.rs-app`; sobrescríbelas para hacerlo tuyo:
+El estudio se ve como el resto de la suite Rebo, islas sobre un lienzo cálido como en Rebodocs, con un CSS que pone en la página una vez, bajo las clases `rsl-` y `sp-`. Sus colores son propiedades personalizadas de `.rsl-app`; sobrescríbelas para hacerlo tuyo:
 
 ```css
-.rs-app,
-.rs-app[data-theme='dark'] {
+.rsl-app,
+.rsl-app[data-theme='dark'] {
   --accent: #0b57d0;
   --accent-hover: #08398a;
   --accent-subtle: #e8f0fd;
 }
 ```
 
-El tema oscuro pone sus propios valores bajo `.rs-app[data-theme='dark']`, así que una sobrescritura para ambos nombra a los dos.
+El tema oscuro pone sus propios valores bajo `.rsl-app[data-theme='dark']`, así que una sobrescritura para ambos nombra a los dos.
